@@ -1,0 +1,13 @@
+import express from "express";
+import { categoriesRoutes } from "./routes/categories.routes";
+
+const app = express();
+app.use(express.json());
+
+const routers = [{ path: "/categories", action: categoriesRoutes }];
+
+for (const route of routers) {
+  app.use(route.path, route.action);
+}
+
+app.listen(3333, () => console.log("Server is running :D"));

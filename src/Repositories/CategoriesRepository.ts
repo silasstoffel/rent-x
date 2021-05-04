@@ -1,11 +1,10 @@
 import { Category } from "../Entities/Category";
+import {
+  ICategoriesRepositories,
+  ICreateCategoryDTO,
+} from "./ICategoriesRepository";
 
-interface ICreateCategoryDTO {
-  name: string;
-  description: string;
-}
-
-export class CategoriesRepositories {
+export class CategoriesRepositories implements ICategoriesRepositories {
   private categories: Category[];
 
   constructor() {

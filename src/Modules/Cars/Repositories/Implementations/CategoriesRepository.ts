@@ -1,9 +1,8 @@
-import { Category } from "../Entities/Category";
-import { categoriesRepository } from '../UseCases/CreateCategory';
+import { Category } from "../../Entities/Category";
 import {
   ICategoriesRepositories,
   ICreateCategoryDTO,
-} from "./ICategoriesRepository";
+} from "../ICategoriesRepository";
 
 export class CategoriesRepository implements ICategoriesRepositories {
   private categories: Category[];

@@ -1,0 +1,84 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Rental-X Documentation",
+    "description": "This is an API Rent",
+    "version": "1.0.0",
+    "contact": "silasstofel@totvs.com.br"
+  },
+  "paths": {
+    "/categories": {
+      "post": {
+        "summary": "Create a category.",
+        "description": "Create a new category.",
+        "tags": ["Category"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "description": { "type": "string" }
+                }
+              },
+              "example": {
+                "name": "Category name sample",
+                "description": "Category description sample"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Category created."
+          },
+          "400": {
+            "description": "Category is not created. Error details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "List all categories.",
+        "description": "List all categories.",
+        "tags": ["Category"],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "string", "description": "ID (uuid)" },
+                      "name": { "type": "string", "description": "Nome" },
+                      "description": {
+                        "type": "string",
+                        "description": "Descrição"
+                      },
+                      "created_at": {
+                        "type": "string",
+                        "description": "Criado em"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

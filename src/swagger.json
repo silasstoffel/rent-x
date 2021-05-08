@@ -68,7 +68,7 @@
                       },
                       "description": {
                         "type": "string",
-                        "description": "Descrição detalhada da categoria."
+                        "description": "Descrição detalhada da categoria"
                       },
                       "created_at": {
                         "type": "string",

@@ -39,10 +39,12 @@ export class ImportCategoryUseCase {
         })
         .on("end", () => {
           stream.close();
+          fs.promises.unlink(file.path);
           resolve(categories);
         })
         .on("error", (err) => {
           stream.close();
+          fs.promises.unlink(file.path);
           reject(err);
         });
     });

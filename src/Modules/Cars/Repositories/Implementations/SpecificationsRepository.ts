@@ -6,14 +6,22 @@ import {
 
 export class SpecificationsRepository implements ISpecificationsRepository {
   private specifications: Specification[];
+  private static instance: SpecificationsRepository;
 
-  constructor() {
+  private constructor() {
     this.specifications = [];
   }
 
+  public static getInstance() {
+    if (!SpecificationsRepository.instance) {
+      SpecificationsRepository.instance = new SpecificationsRepository();
+    }
+    return SpecificationsRepository.instance;
+  }
+
   findByName(name: string): Specification {
-   const result = this.specifications.find((item) => item.name === name);
-   return result ? result : null;
+    const result = this.specifications.find((item) => item.name === name);
+    return result ? result : null;
   }
 
   create({ name, description }: ISpecificationDTO): void {

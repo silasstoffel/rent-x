@@ -62,10 +62,13 @@
                     "type": "object",
                     "properties": {
                       "id": { "type": "string", "description": "ID (uuid)" },
-                      "name": { "type": "string", "description": "Nome" },
+                      "name": {
+                        "type": "string",
+                        "description": "Nome da categoria"
+                      },
                       "description": {
                         "type": "string",
-                        "description": "Descrição"
+                        "description": "Descrição detalhada da categoria."
                       },
                       "created_at": {
                         "type": "string",

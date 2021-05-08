@@ -1,4 +1,5 @@
 import { Category } from "../Entities/Category";
+import { categoriesRepository } from '../UseCases/CreateCategory';
 import {
   ICategoriesRepositories,
   ICreateCategoryDTO,
@@ -6,9 +7,17 @@ import {
 
 export class CategoriesRepository implements ICategoriesRepositories {
   private categories: Category[];
+  private static instance: CategoriesRepository;
 
-  constructor() {
+  private constructor() {
     this.categories = [];
+  }
+
+  public static getInstance() {
+    if (!CategoriesRepository.instance) {
+      CategoriesRepository.instance = new CategoriesRepository();
+    }
+    return CategoriesRepository.instance;    
   }
 
   create({ name, description }: ICreateCategoryDTO) {

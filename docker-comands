@@ -1,0 +1,24 @@
+#Docker raiz
+
+sudo docker build -t rentx .
+sudo docker run -p 3333:3333 rentx
+
+#Docker Compose
+
+sudo docker-compose up -d
+sudo docker-compose down
+sudo docker-compose start (só depois do compose up)
+sudo docker-compose stop
+
+
+
+#Comandos Comuns
+-- Logs
+sudo docker logs rentx_api -f
+
+-- Lista todos os containers
+sudo docker ps -a
+
+-- Remove containers
+sudo docker rm ${id_container}
+

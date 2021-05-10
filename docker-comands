@@ -22,3 +22,9 @@ sudo docker ps -a
 -- Remove containers
 sudo docker rm ${id_container}
 
+
+#Banco de dados
+
+Banco criado depois, por isso é necessário recriar o container
+
+docker-compose up --force-recreate -d

@@ -4,10 +4,10 @@ import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
 export class CreateCategoryController {
   constructor(private useCase: CreateCategoryUseCase) {}
 
-  handle(req: Request, res: Response) {
+  async handle(req: Request, res: Response): Promise<Response> {
     const { name, description } = req.body;
     try {
-      this.useCase.execute({ name, description });
+      await this.useCase.execute({ name, description });
     } catch (error) {
       return res.status(400).json({ message: error.message });
     }

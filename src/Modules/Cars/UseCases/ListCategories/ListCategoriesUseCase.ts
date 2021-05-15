@@ -7,9 +7,7 @@ export class ListCategoriesUseCase {
   constructor(
     @inject("CategoriesRepository")
     private repository: ICategoriesRepositories
-  ) {
-    this.repository = repository;
-  }
+  ) {}
 
   async execute(): Promise<Category[]> {
     return await this.repository.getAll();

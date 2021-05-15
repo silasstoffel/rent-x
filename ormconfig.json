@@ -6,10 +6,8 @@
   "password": "rentx",
   "database": "rentx",
   "migrations": ["./src/database/migrations/*.ts"],
+  "entities": ["./src/Modules/**/Entities/*.ts"],
   "cli": {
     "migrationsDir": "./src/database/migrations"
-  },
-  "entities": [
-    "./src/Modules/**/Entities/*.ts"
-  ]
+  }
 }

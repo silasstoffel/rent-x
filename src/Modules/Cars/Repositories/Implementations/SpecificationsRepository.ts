@@ -8,7 +8,7 @@ export class SpecificationsRepository implements ISpecificationsRepository {
   private specifications: Specification[];
   private static instance: SpecificationsRepository;
 
-  private constructor() {
+  constructor() {
     this.specifications = [];
   }
 

@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+
 import { Category } from "../../Entities/Category";
 import { ICategoriesRepositories } from "../../Repositories/ICategoriesRepository";
 

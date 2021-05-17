@@ -22,7 +22,7 @@ export class ImportCategoryUseCase {
       const { name, description } = item;
       const exists = await this.categoriesRepository.findByName(name);
       if (!exists) {
-        this.categoriesRepository.create({ name, description });
+        await this.categoriesRepository.create({ name, description });
       }
     });
   }

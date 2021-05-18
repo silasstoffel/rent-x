@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Rental-X Documentation",
+    "title": "Rent-X Documentation",
     "description": "This is an API Rent",
     "version": "1.0.0",
     "contact": "silasstofel@totvs.com.br"
@@ -80,6 +80,123 @@
               }
             }
           }
+        }
+      }
+    },
+
+    "/categories/import": {
+      "post": {
+        "summary": "Upload categories.",
+        "description": "Upload categories. (csv file).",
+        "tags": ["Category"],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+
+    "/specifications": {
+      "post": {
+        "summary": "Create a specification.",
+        "description": "Create a new specification.",
+        "tags": ["Specifications"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Specification"
+              },
+              "example": {
+                "name": "Specification name sample",
+                "description": "Specification description sample"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Specification created."
+          },
+          "400": {
+            "description": "Specification is not created. Error details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "List all categories.",
+        "description": "List all categories.",
+        "tags": ["Category"],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "string", "description": "ID (uuid)" },
+                      "name": {
+                        "type": "string",
+                        "description": "Nome da categoria"
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "Descrição detalhada da categoria"
+                      },
+                      "created_at": {
+                        "type": "string",
+                        "description": "Criado em"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "definitions": {
+    "Specification": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "ID (readonly)" },
+        "name": { "type": "string", "description": "Name" },
+        "description": {
+          "type": "string",
+          "description": "Description of specifications"
+        },
+        "created_at": {
+          "type": "datetime",
+          "description": "Created at (readonly)"
         }
       }
     }

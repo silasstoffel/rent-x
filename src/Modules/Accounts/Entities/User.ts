@@ -1,7 +1,7 @@
 import { v4 as uuidV4 } from "uuid";
 import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
 
-@Entity("users")
+@Entity("users") 
 class User {
   @PrimaryColumn()
   id?: string;
@@ -30,7 +30,7 @@ class User {
   constructor() {
     if (!this.id) {
       this.id = uuidV4();
-      this.is_admin = false;
+      //this.is_admin = false;
     }
   }
 }

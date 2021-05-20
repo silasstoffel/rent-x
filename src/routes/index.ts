@@ -1,12 +1,13 @@
 import { Router } from "express";
 import { categoriesRoutes } from "./categories.routes";
 import { speficationsRoutes } from "./specifications.routes";
-
+import { usersRoutes } from "./users.routes";
 const router = Router();
 
 const routers = [
   { path: "/categories", action: categoriesRoutes },
   { path: "/specifications", action: speficationsRoutes },
+  { path: "/users", action: usersRoutes },
 ];
 
 for (const route of routers) {

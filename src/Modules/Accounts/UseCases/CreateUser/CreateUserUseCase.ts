@@ -16,6 +16,12 @@ export class CreateUserUseCase {
     email,
     driver_license,
   }: ICreateUserDto): Promise<void> {
+    const already = await this.repository.findByEmail(email);
+
+    if (already) {
+      throw new Error("User already exists.");
+    }
+
     const passwordHash = await hash(password, 8);
 
     await this.repository.create({

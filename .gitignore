@@ -4,3 +4,4 @@ yarn-error.log
 !.gitkeep
 /dist
 /tmp
+/storage

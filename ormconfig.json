@@ -1,7 +1,7 @@
 {
   "type": "postgres",
   "port": 5432,
-  "host": "localhost",
+  "host": "rentx_api",
   "username": "rentx",
   "password": "rentx",
   "database": "rentx",

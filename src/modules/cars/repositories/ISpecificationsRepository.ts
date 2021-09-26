@@ -1,4 +1,4 @@
-import { Specification } from '../Entities/Specification';
+import { Specification } from '../entities/Specification';
 
 interface ISpecificationDTO {
   name: string;

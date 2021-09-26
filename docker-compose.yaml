@@ -4,32 +4,35 @@ services:
   
   database:
     image: postgres
-    container_name: database_ignite
-    restart: always
+    container_name: 'rentx-database'
+    #restart: always
     ports:
-      - 5432:5432
+      - '5432:5432'
     environment:
       - POSTGRES_USER=rentx
       - POSTGRES_PASSWORD=rentx
       - POSTGRES_DB=rentx
     volumes:
-      - volumes-db:/data/postgres
+      - ./docker/:/data/postgres
+    networks: 
+      - default 
  
   api:
     build: .
-    container_name: rentx_api
-    restart: always 
+    container_name: 'rentx-api'
+    #restart: always 
     ports:
-      - 3333:3333
-      - 9229:9229
+      - '3333:3333'
+      - '9229:9229'
     volumes:
       - .:/usr/app
     links: 
       - database
     depends_on:
-      - database  
+      - database
+    networks: 
+      - default    
 
-
-volumes:
-  volumes-db:
-    driver: local
+#volumes:
+#  volumes-db:
+#    driver: local

@@ -1,12 +1,12 @@
 {
   "type": "postgres",
   "port": 5432,
-  "host": "rentx_api",
+  "host": "rentx-database",
   "username": "rentx",
   "password": "rentx",
   "database": "rentx",
   "migrations": ["./src/database/migrations/*.ts"],
-  "entities": ["./src/Modules/**/Entities/*.ts"],
+  "entities": ["./src/modules/**/entities/*.ts"],
   "cli": {
     "migrationsDir": "./src/database/migrations"
   }

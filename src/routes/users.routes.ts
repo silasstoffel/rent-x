@@ -2,7 +2,7 @@ import { Router } from "express";
 import multer from "multer";
 
 import uploadConfig from '../config/upload';
-import { ensureAuthenticated } from "../Middleware/ensureAuthenticate";
+import { ensureAuthenticated } from "../middleware/ensureAuthenticate";
 import { CreateUserController } from "../modules/accounts/UseCases/CreateUser/CreateUserController";
 import { UpdateUserAvatarController } from "../modules/accounts/UseCases/UpdateUserAvatar/UpdateUserAvatarController";
 

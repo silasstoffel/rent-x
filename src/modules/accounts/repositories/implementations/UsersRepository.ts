@@ -29,12 +29,12 @@ class UsersRepository implements IUsersRepository {
     avatar
   }: ICreateUserDto): Promise<void> {
     const entity = this.repository.create({
-      name,
-      email,
-      password,
-      driver_license,
-      avatar,
-      id
+    name,
+    email,
+    password,
+    driver_license,
+    avatar,
+    id
     });
     await this.repository.save(entity);
   }

@@ -8,16 +8,16 @@ export class CreateUserController {
     const useCase = container.resolve(CreateUserUseCase);
     const { name, password, email, driver_license } = req.body;
     try {
-      await useCase.execute({
+    await useCase.execute({
         name,
         password,
         email,
         driver_license,
-      });
+    });
     } catch (error) {
-      return res.status(400).send({
+    return res.status(400).send({
         error: error.message,
-      });
+    });
     }
     return res.status(201).send();
   }

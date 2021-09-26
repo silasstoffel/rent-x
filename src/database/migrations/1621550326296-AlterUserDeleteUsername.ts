@@ -9,9 +9,9 @@ export class AlterUserDeleteUsername1621550326296
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     const column = new TableColumn({
-      name: "username",
-      type: "varchar",
-      isUnique: true,
+    name: "username",
+    type: "varchar",
+    isUnique: true,
     });
     await queryRunner.addColumn("users", column);
   }

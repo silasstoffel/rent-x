@@ -19,11 +19,11 @@ export class ImportCategoryUseCase {
   async execute(file: Express.Multer.File): Promise<void> {
     const categories = await this.loadCategories(file);
     categories.map(async (item: IImportCategory) => {
-      const { name, description } = item;
-      const exists = await this.categoriesRepository.findByName(name);
-      if (!exists) {
+    const { name, description } = item;
+    const exists = await this.categoriesRepository.findByName(name);
+    if (!exists) {
         await this.categoriesRepository.create({ name, description });
-      }
+    }
     });
   }
 
@@ -31,26 +31,26 @@ export class ImportCategoryUseCase {
     file: Express.Multer.File
   ): Promise<IImportCategory[]> {
     return new Promise((resolve, reject) => {
-      const parseFile = csvParse();
-      const stream = fs.createReadStream(file.path);
-      stream.pipe(parseFile);
+    const parseFile = csvParse();
+    const stream = fs.createReadStream(file.path);
+    stream.pipe(parseFile);
 
-      const categories: IImportCategory[] = [];
+    const categories: IImportCategory[] = [];
 
-      parseFile
+    parseFile
         .on("data", async (line) => {
-          const [name, description] = line;
-          categories.push({ name, description });
+        const [name, description] = line;
+        categories.push({ name, description });
         })
         .on("end", () => {
-          stream.close();
-          fs.promises.unlink(file.path);
-          resolve(categories);
+        stream.close();
+        fs.promises.unlink(file.path);
+        resolve(categories);
         })
         .on("error", (err) => {
-          stream.close();
-          fs.promises.unlink(file.path);
-          reject(err);
+        stream.close();
+        fs.promises.unlink(file.path);
+        reject(err);
         });
     });
   }

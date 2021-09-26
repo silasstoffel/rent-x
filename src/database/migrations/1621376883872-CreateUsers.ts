@@ -9,8 +9,8 @@ export class CreateUsers1621376883872 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     const table = new Table({
-      name: this.tableName,
-      columns: [
+    name: this.tableName,
+    columns: [
         { name: "id", type: "uuid", isPrimary: true },
         { name: "name", type: "varchar" },
         { name: "username", type: "varchar", isUnique: true },
@@ -19,7 +19,7 @@ export class CreateUsers1621376883872 implements MigrationInterface {
         { name: "driver_license", type: "varchar" },
         { name: "is_admin", type: "boolean", default: false },
         { name: "created_at", type: "timestamp", default: "now()" },
-      ],
+    ],
     });
     await queryRunner.createTable(table);
   }

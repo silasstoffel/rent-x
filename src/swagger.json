@@ -8,197 +8,197 @@
   },
   "paths": {
     "/categories": {
-      "post": {
+    "post": {
         "summary": "Create a category.",
         "description": "Create a new category.",
         "tags": ["Category"],
         "requestBody": {
-          "content": {
+        "content": {
             "application/json": {
-              "schema": {
+            "schema": {
                 "type": "object",
                 "properties": {
-                  "name": { "type": "string" },
-                  "description": { "type": "string" }
+                "name": { "type": "string" },
+                "description": { "type": "string" }
                 }
-              },
-              "example": {
+            },
+            "example": {
                 "name": "Category name sample",
                 "description": "Category description sample"
-              }
             }
-          }
+            }
+        }
         },
         "responses": {
-          "201": {
+        "201": {
             "description": "Category created."
-          },
-          "400": {
+        },
+        "400": {
             "description": "Category is not created. Error details",
             "content": {
-              "application/json": {
+            "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
+                "type": "object",
+                "properties": {
                     "message": { "type": "string" }
-                  }
                 }
-              }
+                }
             }
-          }
+            }
         }
-      },
-      "get": {
+        }
+    },
+    "get": {
         "summary": "List all categories.",
         "description": "List all categories.",
         "tags": ["Category"],
         "responses": {
-          "200": {
+        "200": {
             "content": {
-              "application/json": {
+            "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
+                "type": "array",
+                "items": {
                     "type": "object",
                     "properties": {
-                      "id": { "type": "string", "description": "ID (uuid)" },
-                      "name": {
+                    "id": { "type": "string", "description": "ID (uuid)" },
+                    "name": {
                         "type": "string",
                         "description": "Nome da categoria"
-                      },
-                      "description": {
+                    },
+                    "description": {
                         "type": "string",
                         "description": "Descrição detalhada da categoria"
-                      },
-                      "created_at": {
+                    },
+                    "created_at": {
                         "type": "string",
                         "description": "Criado em"
-                      }
                     }
-                  }
+                    }
                 }
-              }
+                }
             }
-          }
+            }
         }
-      }
+        }
+    }
     },
 
     "/categories/import": {
-      "post": {
+    "post": {
         "summary": "Upload categories.",
         "description": "Upload categories. (csv file).",
         "tags": ["Category"],
         "requestBody": {
-          "content": {
+        "content": {
             "multipart/form-data": {
-              "schema": {
+            "schema": {
                 "type": "object",
                 "properties": {
-                  "type": "string",
-                  "format": "binary"
+                "type": "string",
+                "format": "binary"
                 }
-              }
             }
-          }
+            }
+        }
         },
         "responses": {
-          "201": {
+        "201": {
             "description": "Created"
-          }
         }
-      }
+        }
+    }
     },
 
     "/specifications": {
-      "post": {
+    "post": {
         "summary": "Create a specification.",
         "description": "Create a new specification.",
         "tags": ["Specifications"],
         "requestBody": {
-          "content": {
+        "content": {
             "application/json": {
-              "schema": {
+            "schema": {
                 "$ref": "#/definitions/Specification"
-              },
-              "example": {
+            },
+            "example": {
                 "name": "Specification name sample",
                 "description": "Specification description sample"
-              }
             }
-          }
+            }
+        }
         },
         "responses": {
-          "201": {
+        "201": {
             "description": "Specification created."
-          },
-          "400": {
+        },
+        "400": {
             "description": "Specification is not created. Error details",
             "content": {
-              "application/json": {
+            "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
+                "type": "object",
+                "properties": {
                     "error": { "type": "string" }
-                  }
                 }
-              }
+                }
             }
-          }
+            }
         }
-      },
-      "get": {
+        }
+    },
+    "get": {
         "summary": "List all categories.",
         "description": "List all categories.",
         "tags": ["Category"],
         "responses": {
-          "200": {
+        "200": {
             "content": {
-              "application/json": {
+            "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
+                "type": "array",
+                "items": {
                     "type": "object",
                     "properties": {
-                      "id": { "type": "string", "description": "ID (uuid)" },
-                      "name": {
+                    "id": { "type": "string", "description": "ID (uuid)" },
+                    "name": {
                         "type": "string",
                         "description": "Nome da categoria"
-                      },
-                      "description": {
+                    },
+                    "description": {
                         "type": "string",
                         "description": "Descrição detalhada da categoria"
-                      },
-                      "created_at": {
+                    },
+                    "created_at": {
                         "type": "string",
                         "description": "Criado em"
-                      }
                     }
-                  }
+                    }
                 }
-              }
+                }
             }
-          }
+            }
         }
-      }
+        }
+    }
     }
   },
 
   "definitions": {
     "Specification": {
-      "type": "object",
-      "properties": {
+    "type": "object",
+    "properties": {
         "id": { "type": "string", "description": "ID (readonly)" },
         "name": { "type": "string", "description": "Name" },
         "description": {
-          "type": "string",
-          "description": "Description of specifications"
+        "type": "string",
+        "description": "Description of specifications"
         },
         "created_at": {
-          "type": "datetime",
-          "description": "Created at (readonly)"
+        "type": "datetime",
+        "description": "Created at (readonly)"
         }
-      }
+    }
     }
   }
 }

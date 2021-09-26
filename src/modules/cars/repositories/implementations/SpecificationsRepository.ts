@@ -20,8 +20,8 @@ export class SpecificationsRepository implements ISpecificationsRepository {
 
   async create({ name, description }: ISpecificationDTO): Promise<void> {
     const specification = this.repository.create({
-      name,
-      description,
+    name,
+    description,
     });
     await this.repository.save(specification);
   }

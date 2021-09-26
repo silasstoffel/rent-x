@@ -1,7 +1,7 @@
 import { container, inject, injectable } from "tsyringe";
 import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
-import { IUsersRepository } from "../../Repositories/IUsersRepository";
+import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 interface IRequest {
   email: string;

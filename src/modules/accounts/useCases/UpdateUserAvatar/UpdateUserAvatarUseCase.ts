@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import { IUsersRepository } from '../../Repositories/IUsersRepository';
+import { IUsersRepository } from '../../repositories/IUsersRepository';
 import { deleteFile } from '../../../../util/File';
 
 interface IRequest {

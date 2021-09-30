@@ -14,7 +14,7 @@ sudo docker-compose stop
 
 #Comandos Comuns
 -- Logs
-sudo docker logs rentx_api -f
+sudo docker logs rentx-api -f
 
 -- Lista todos os containers
 sudo docker ps -a

@@ -3,6 +3,7 @@ import { categoriesRoutes } from "./categories.routes";
 import { speficationsRoutes } from "./specifications.routes";
 import { usersRoutes } from "./users.routes";
 import { authenticateRoutes } from "./authenticate.routes";
+import { carsRoutes } from "./cars.routes";
 
 const router = Router();
 
@@ -11,6 +12,7 @@ const routers = [
   { path: "/categories", action: categoriesRoutes },
   { path: "/specifications", action: speficationsRoutes },
   { path: "/users", action: usersRoutes },
+  { path: "/cars", action: carsRoutes },
 ];
 
 for (const route of routers) {

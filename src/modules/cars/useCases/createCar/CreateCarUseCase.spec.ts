@@ -52,6 +52,6 @@ describe("CreateCarUseCase", () => {
             fine_amount: 60,
         };
         const car = await useCase.execute(data);
-        expect(car.avaliable).toBeTruthy();
+        expect(car.available).toBeTruthy();
     });
 });

@@ -15,6 +15,8 @@ async function create() {
             '${id}', 'Admin', 'admin@rentx.com.br', '${password}', true, 'now()', 'XXYYZZ'
         )`
     );
+
+    await connection.close();
 }
 
 create().then(() => console.log("user admin was created."));

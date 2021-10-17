@@ -2,6 +2,7 @@ node_modules
 yarn-error.log
 .vscode
 !.gitkeep
+.idea
 /dist
 /tmp
 /storage

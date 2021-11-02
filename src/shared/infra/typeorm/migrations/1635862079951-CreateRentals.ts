@@ -4,6 +4,7 @@ export class CreateRentals1635862079951 implements MigrationInterface {
     private tableName = 'rentals';
 
     public async up(queryRunner: QueryRunner): Promise<void> {
+        const isNullable = true;
         await queryRunner.createTable(
             new Table({
                 name: this.tableName,
@@ -12,11 +13,11 @@ export class CreateRentals1635862079951 implements MigrationInterface {
                     {name: "car_id", type: "uuid"},
                     {name: "user_id", type: "uuid"},
                     {name: "start_date", type: "timestamp", default: "now()"},
-                    {name: "end_date", type: "timestamp", default: null},
+                    {name: "end_date", type: "timestamp", default: null, isNullable},
                     {name: "expected_return_date", type: "timestamp", default: null},
-                    {name: "total", type: "numeric"},
+                    {name: "total", type: "numeric", isNullable},
                     {name: "created_at", type: "timestamp", default: "now()"},
-                    {name: "updated_at", type: "timestamp", default: null},
+                    {name: "updated_at", type: "timestamp", default: "now()"},
                 ],
                 foreignKeys: [
                     {

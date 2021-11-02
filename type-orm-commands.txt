@@ -2,3 +2,5 @@ yarn typeorm migration:create -n CreateSpecificationsCars
 yarn typeorm migration:create -n CreateCarsImages
 
 yarn typeorm migration:run
+
+yarn typeorm migration:revert

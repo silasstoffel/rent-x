@@ -32,5 +32,4 @@ export class CreateCarsImages1635720669942 implements MigrationInterface {
         await queryRunner.dropForeignKey(this.tableName, 'FKCarImage');
         await queryRunner.dropTable(this.tableName);
     }
-
 }

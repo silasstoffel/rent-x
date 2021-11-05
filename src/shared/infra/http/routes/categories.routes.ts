@@ -13,17 +13,18 @@ const upload = multer({
     dest: "./tmp",
 });
 
-const create = new CreateCategoryController();
-categoriesRoutes.post("/", ensureAuthenticated, ensureIsAdmin, create.handle);
-
 categoriesRoutes.get("/", new ListCategoriesController().handle);
+
+categoriesRoutes.use(ensureAuthenticated);
+categoriesRoutes.use(ensureIsAdmin);
+
+const create = new CreateCategoryController();
+categoriesRoutes.post("/", create.handle);
 
 const ImportCategory = new ImportCategoryController();
 categoriesRoutes.post(
     "/import",
     upload.single("file"),
-    ensureAuthenticated,
-    ensureIsAdmin,
     ImportCategory.handle
 );
 

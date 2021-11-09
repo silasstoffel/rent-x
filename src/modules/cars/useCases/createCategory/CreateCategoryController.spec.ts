@@ -7,12 +7,11 @@ import {Connection} from "typeorm";
 
 import createConnection from '@shared/infra/typeorm';
 
-let connection: Connection;
-
-const userLogin = 'admin@rentx.com.br';
-const userPassword = 'admin';
 
 describe("Category Controller", () => {
+    let connection: Connection;
+    const userLogin = 'admin@rentx.com.br';
+    const userPassword = 'admin';
 
     beforeAll(async () => {
         const connection = await createConnection();
@@ -21,7 +20,7 @@ describe("Category Controller", () => {
         const id = uuidV4();
         const password = await hash(userPassword, 8);
 
-        await connection.query('DELETE FROM users');
+        await connection.query(`DELETE FROM users WHERE email = '${userLogin}'`);
         await connection.query('DELETE FROM categories');
         await connection.query(
             `INSERT INTO users(
@@ -49,6 +48,7 @@ describe("Category Controller", () => {
             }).set({
                 Authorization: `Bearer ${token}`
             });
+
         expect(response.status).toBe(201);
     });
 

@@ -7,20 +7,20 @@ import {Connection} from "typeorm";
 
 import createConnection from '@shared/infra/typeorm';
 
-let connection: Connection;
-
-const userLogin = 'admin@rentx.com.br';
-const userPassword = 'admin';
-
 describe("List Category Controller", () => {
 
+    let connection: Connection;
+    const userLogin = 'admin-list@rentx.com.br';
+    const userPassword = 'admin-list-category';
+    const categoriesNames = [];
+
     beforeAll(async () => {
-        const connection = await createConnection();
+        connection = await createConnection();
         await connection.runMigrations();
 
         const id = uuidV4();
         const password = await hash(userPassword, 8);
-        await connection.query('DELETE FROM users');
+        await connection.query(`DELETE FROM users WHERE email = '${userLogin}'`);
         await connection.query('DELETE FROM categories');
         await connection.query(
             `INSERT INTO users(
@@ -28,6 +28,13 @@ describe("List Category Controller", () => {
         ) VALUES (
             '${id}', 'Admin', '${userLogin}', '${password}', true, 'now()', 'XXYYZZ'
         )`);
+    });
+
+    afterAll(async () => {
+        categoriesNames.map(async(name) => {
+            await connection.query(`DELETE FROM categories WHERE name = '${name}'`);
+        });
+        await connection.close();
     });
 
     it('Should be able to list all available categories', async () => {
@@ -40,11 +47,13 @@ describe("List Category Controller", () => {
             });
 
         const {token} = tokenResponse.body;
+        const category = `${token}-category`;
+        categoriesNames.push(category);
 
         await request(app)
             .post('/categories')
             .send({
-                name: "Category Test",
+                name: category,
                 description: 'Category Description'
             }).set({
                 Authorization: `Bearer ${token}`
@@ -54,7 +63,7 @@ describe("List Category Controller", () => {
         expect(response.status).toBe(200);
         expect(response.body.length).toBe(1);
         expect(response.body[0]).toHaveProperty("id");
-        expect(response.body[0].name).toEqual('Category Test');
+        expect(response.body[0]).toHaveProperty('name',category);
     });
 
 });

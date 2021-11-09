@@ -1,5 +1,4 @@
 import dayjs from "dayjs";
-import utc from 'dayjs/plugin/utc';
 
 import {CreateRentalUseCase} from "@modules/rentals/useCases/createRental/CreateRentalUseCase";
 import {IRentalsRepository} from "@modules/rentals/repositories/IRentalsRepository";
@@ -8,7 +7,6 @@ import {AppError} from "@shared/errors/AppError";
 import {DayjsDateProvider} from "@shared/container/providers/date/implementations/DayjsDateProvider";
 import {CarsRepositoryInMemory} from "@modules/cars/repositories/in-memory/CarsRepositoryInMemory";
 import {ICarsRepository} from "@modules/cars/repositories/ICarsRepository";
-import {CarsRepository} from "@modules/cars/infra/typeorm/repositories/CarsRepository";
 
 describe('CreateRentalUseCase', () => {
     let useCase: CreateRentalUseCase;

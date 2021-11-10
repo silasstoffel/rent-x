@@ -62,6 +62,16 @@ describe("Category Controller", () => {
             });
 
         const {token} = tokenResponse.body;
+
+        await request(app)
+            .post('/categories')
+            .send({
+                name: "Category Test",
+                description: 'Category Description'
+            }).set({
+                Authorization: `Bearer ${token}`
+            });
+
         const response = await request(app)
             .post('/categories')
             .send({

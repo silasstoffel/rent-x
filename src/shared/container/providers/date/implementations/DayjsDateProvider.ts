@@ -14,6 +14,14 @@ export class DayjsDateProvider implements IDateProvider {
             );
     }
 
+    compareInDays(startDate: Date, endDate: Date): number {
+        return dayjs(this.convertToUTC(endDate))
+            .diff(
+                this.convertToUTC(startDate),
+                'days'
+            );
+    }
+
     convertToUTC(date: Date): string {
         return dayjs(date).utc().local().format();
     }

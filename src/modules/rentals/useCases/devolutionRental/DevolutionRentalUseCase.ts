@@ -4,6 +4,7 @@ import {ICarsRepository} from "@modules/cars/repositories/ICarsRepository";
 import {AppError} from "@shared/errors/AppError";
 import {IDateProvider} from "@shared/container/providers/date/IDateProvider";
 import {Rental} from "@modules/rentals/infra/typeorm/entities/Rental";
+import {ICreateRentalDTO} from "@modules/rentals/dtos/ICreateRentalDTO";
 
 interface IRequest {
     id: string,
@@ -51,7 +52,7 @@ export class DevolutionRentalUseCase {
         rental.end_date = this.dateProvider.now();
         rental.total = total;
 
-        await this.rentalsRepository.create(rental);
+        await this.rentalsRepository.create(rental as ICreateRentalDTO);
         await this.carsRepository.updateAvailable(car.id, true);
 
         return rental;

@@ -31,6 +31,6 @@ describe("Create Category", () => {
             await useCase.execute(data);
             await useCase.execute(data);
         };
-        expect(create()).rejects.toBeInstanceOf(AppError);
+        await expect(create()).rejects.toBeInstanceOf(AppError);
     });
 });

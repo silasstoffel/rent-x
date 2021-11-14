@@ -2,18 +2,18 @@ import {IRentalsRepository} from "@modules/rentals/repositories/IRentalsReposito
 import {Rental} from "@modules/rentals/infra/typeorm/entities/Rental";
 import {ICreateRentalDTO} from "@modules/rentals/dtos/ICreateRentalDTO";
 
-export class RentalsRepositoryInMemory implements IRentalsRepository{
+export class RentalsRepositoryInMemory implements IRentalsRepository {
     private rentals: Rental[] = [];
 
     async findOpenRentalByCar(carId: string): Promise<Rental> {
         return this.rentals.find(
-            (item:Rental) => item.car_id === carId && !item.end_date
+            (item: Rental) => item.car_id === carId && !item.end_date
         );
     }
 
     async findOpenRentalByUser(userId: string): Promise<Rental> {
         return this.rentals.find(
-            (item:Rental) => item.user_id === userId && !item.end_date
+            (item: Rental) => item.user_id === userId && !item.end_date
         );
     }
 
@@ -29,5 +29,13 @@ export class RentalsRepositoryInMemory implements IRentalsRepository{
         });
         this.rentals.push(rental);
         return rental;
+    }
+
+    async findById(id: string): Promise<Rental> {
+        return this.rentals.find((item) => item.id === id);
+    }
+
+    async findByUser(userId: string): Promise<Rental[]> {
+        return this.rentals.filter((item) => item.user_id === userId);
     }
 }

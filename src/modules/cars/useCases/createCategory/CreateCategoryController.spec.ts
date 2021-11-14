@@ -38,8 +38,10 @@ describe("Category Controller", () => {
                 email: userLogin,
                 password: userPassword
             });
+        expect(tokenResponse.status).toBe(200);
 
         const {token} = tokenResponse.body;
+
         const response = await request(app)
             .post('/categories')
             .send({

@@ -1,6 +1,6 @@
-import {ICreateUserDto} from "@modules/accounts/dtos/ICreateUserDto";
 import {UserTokens} from "@modules/accounts/infra/typeorm/entities/UserTokens";
+import {ICreateUserTokenDto} from "@modules/accounts/dtos/ICreateUserTokenDto";
 
 export interface IUsersTokensRepository {
-    create(data: ICreateUserDto): Promise<UserTokens>
+    create(data: ICreateUserTokenDto): Promise<UserTokens>
 }

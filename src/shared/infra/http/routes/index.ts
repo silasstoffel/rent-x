@@ -5,6 +5,7 @@ import {usersRoutes} from "./users.routes";
 import {authenticateRoutes} from "./authenticate.routes";
 import {carsRoutes} from "./cars.routes";
 import {rentalsRoutes} from "@shared/infra/http/routes/rentals.routes";
+import {passwordRoutes} from "@shared/infra/http/routes/password.routes";
 
 const router = Router();
 
@@ -15,6 +16,7 @@ const routers = [
     {path: "/users", action: usersRoutes},
     {path: "/cars", action: carsRoutes},
     {path: "/rentals", action: rentalsRoutes},
+    {path: "/password", action: passwordRoutes},
 ];
 
 for (const route of routers) {

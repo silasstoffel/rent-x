@@ -7,3 +7,5 @@ yarn-error.log
 /tmp
 /storage
 /docker/postgres
+
+.env

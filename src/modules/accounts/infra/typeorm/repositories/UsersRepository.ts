@@ -1,9 +1,9 @@
-import { getRepository, Repository } from "typeorm";
-import { ICreateUserDto } from "@modules/accounts/dtos/ICreateUserDto";
-import { User } from "../entities/User";
-import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
+import {getRepository, Repository} from "typeorm";
+import {ICreateUserDto} from "@modules/accounts/dtos/ICreateUserDto";
+import {User} from "../entities/User";
+import {IUsersRepository} from "@modules/accounts/repositories/IUsersRepository";
 
-class UsersRepository implements IUsersRepository {
+export class UsersRepository implements IUsersRepository {
     private repository: Repository<User>;
 
     constructor() {
@@ -11,23 +11,21 @@ class UsersRepository implements IUsersRepository {
     }
 
     async findById(id: string): Promise<User> {
-        const user = await this.repository.findOne({ id });
-        return user;
+        return await this.repository.findOne({id});
     }
 
     async findByEmail(email: string): Promise<User> {
-        const user = await this.repository.findOne({ email });
-        return user;
+        return await this.repository.findOne({email});
     }
 
     async create({
-        id,
-        name,
-        password,
-        email,
-        driver_license,
-        avatar,
-    }: ICreateUserDto): Promise<void> {
+                     id,
+                     name,
+                     password,
+                     email,
+                     driver_license,
+                     avatar,
+                 }: ICreateUserDto): Promise<void> {
         const entity = this.repository.create({
             name,
             email,
@@ -39,5 +37,3 @@ class UsersRepository implements IUsersRepository {
         await this.repository.save(entity);
     }
 }
-
-export { UsersRepository };

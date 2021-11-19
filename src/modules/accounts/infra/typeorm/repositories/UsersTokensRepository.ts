@@ -5,7 +5,7 @@ import {getRepository, Repository} from "typeorm";
 import {ICreateUserTokenDto} from "@modules/accounts/dtos/ICreateUserTokenDto";
 
 @injectable()
-export class UsersTokensRepository implements  IUsersTokensRepository{
+export class UsersTokensRepository implements IUsersTokensRepository {
     private repository: Repository<UserTokens>
 
     constructor() {
@@ -26,5 +26,11 @@ export class UsersTokensRepository implements  IUsersTokensRepository{
 
     async delete(id: string): Promise<void> {
         await this.repository.delete({id});
+    }
+
+    async findByRefreshToken(token: string): Promise<UserTokens> {
+        return await this.repository.findOne({
+            refresh_token: token
+        });
     }
 }

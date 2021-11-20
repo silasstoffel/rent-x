@@ -30,6 +30,10 @@ describe("Category Controller", () => {
         )`);
     });
 
+    afterAll(async() => {
+        connection && await connection.close()
+    })
+
     it('Should be able to create category', async () => {
 
         const tokenResponse = await request(app)
@@ -40,7 +44,7 @@ describe("Category Controller", () => {
             });
         expect(tokenResponse.status).toBe(200);
 
-        const {token} = tokenResponse.body;
+        const {refresh_token: token} = tokenResponse.body;
 
         const response = await request(app)
             .post('/categories')
@@ -63,7 +67,7 @@ describe("Category Controller", () => {
                 password: userPassword
             });
 
-        const {token} = tokenResponse.body;
+        const {refresh_token: token} = tokenResponse.body;
 
         await request(app)
             .post('/categories')
@@ -85,5 +89,4 @@ describe("Category Controller", () => {
 
         expect(response.status).toBe(400);
     });
-
 });

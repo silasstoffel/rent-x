@@ -1,14 +1,16 @@
-import { AppError } from "@shared/errors/AppError";
-import { ICreateUserDto } from "@modules/accounts/dtos/ICreateUserDto";
-import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
-import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
-import { CreateUserUseCase } from "../CreateUser/CreateUserUseCase";
-import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase";
+import {AppError} from "@shared/errors/AppError";
+import {ICreateUserDto} from "@modules/accounts/dtos/ICreateUserDto";
+import {UsersRepositoryInMemory} from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
+import {IUsersRepository} from "@modules/accounts/repositories/IUsersRepository";
+import {CreateUserUseCase} from "../CreateUser/CreateUserUseCase";
+import {AuthenticateUserUseCase} from "./AuthenticateUserUseCase";
+import {UsersTokenRepositoryInMemory} from "@modules/accounts/repositories/in-memory/UsersTokenRepositoryInMemory";
+import {DayjsDateProvider} from "@shared/container/providers/date/implementations/DayjsDateProvider";
 
-describe("AutenticateUserUseCase", () => {
+describe("AuthenticateUserUseCase", () => {
     let autenticateUserUseCase: AuthenticateUserUseCase;
     let createaUserUseCase: CreateUserUseCase;
-    let usersRepository: IUsersRepository;
+    let userRepository: IUsersRepository;
 
     const createUser = async (
         driver_license: string = null,
@@ -27,9 +29,15 @@ describe("AutenticateUserUseCase", () => {
     };
 
     beforeEach(() => {
-        usersRepository = new UsersRepositoryInMemory();
-        createaUserUseCase = new CreateUserUseCase(usersRepository);
-        autenticateUserUseCase = new AuthenticateUserUseCase(usersRepository);
+        const userRepository = new UsersRepositoryInMemory();
+        createaUserUseCase = new CreateUserUseCase(
+            userRepository
+        );
+        autenticateUserUseCase = new AuthenticateUserUseCase(
+            userRepository,
+            new UsersTokenRepositoryInMemory(),
+            new DayjsDateProvider()
+        );
     });
 
     it("Should be able to authenticate an user", async () => {
@@ -42,22 +50,24 @@ describe("AutenticateUserUseCase", () => {
         expect(result).toHaveProperty("token");
     });
 
-    it("Should be not able to authenticate an nonexistent user", () => {
-        expect(async () => {
-            await autenticateUserUseCase.execute({
-                email: "batman-fake@dc.com",
-                password: "bat-man",
-            });
-        }).rejects.toBeInstanceOf(AppError);
-    });
+        it("Should be not able to authenticate an nonexistent user",  () => {
+            expect(async () => {
+                await autenticateUserUseCase.execute({
+                    email: "batman-fake@dc.com",
+                    password: "bat-man",
+                });
+            }).rejects.toBeInstanceOf(AppError);
+        });
 
-    it("Should be not able to authenticate with incorret password", () => {
-        expect(async () => {
-            const user = await createUser();
-            await autenticateUserUseCase.execute({
-                email: user.email,
-                password: `${user.password}-invalid`,
-            });
-        }).rejects.toBeInstanceOf(AppError);
-    });
+
+        it("Should be not able to authenticate with incorrect password", () => {
+            expect(async () => {
+                const user = await createUser();
+                await autenticateUserUseCase.execute({
+                    email: user.email,
+                    password: `${user.password}-invalid`,
+                });
+            }).rejects.toBeInstanceOf(AppError);
+        });
+
 });

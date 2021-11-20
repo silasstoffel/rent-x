@@ -31,7 +31,7 @@ describe("List Category Controller", () => {
     });
 
     afterAll(async () => {
-        categoriesNames.map(async(name) => {
+        categoriesNames.map(async (name) => {
             await connection.query(`DELETE FROM categories WHERE name = '${name}'`);
         });
         await connection.close();
@@ -46,7 +46,7 @@ describe("List Category Controller", () => {
                 password: userPassword
             });
 
-        const {token} = tokenResponse.body;
+        const {refresh_token: token} = tokenResponse.body;
         const category = `${token}-category`;
         categoriesNames.push(category);
 
@@ -63,7 +63,7 @@ describe("List Category Controller", () => {
         expect(response.status).toBe(200);
         expect(response.body.length).toBe(1);
         expect(response.body[0]).toHaveProperty("id");
-        expect(response.body[0]).toHaveProperty('name',category);
+        expect(response.body[0]).toHaveProperty('name', category);
     });
 
 });

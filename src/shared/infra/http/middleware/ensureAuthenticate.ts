@@ -29,7 +29,7 @@ export async function ensureAuthenticated(
         if (!user) {
             throw new AppError("User does not exists.", 401);
         }
-        req.user = { id: userId, is_admin: user.is_admin };
+        req.user = { id: userId };
 
         return next();
     } catch (error) {

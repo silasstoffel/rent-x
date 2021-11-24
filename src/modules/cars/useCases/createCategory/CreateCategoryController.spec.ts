@@ -44,7 +44,7 @@ describe("Category Controller", () => {
             });
         expect(tokenResponse.status).toBe(200);
 
-        const {refresh_token: token} = tokenResponse.body;
+        const { token} = tokenResponse.body;
 
         const response = await request(app)
             .post('/categories')
@@ -67,7 +67,7 @@ describe("Category Controller", () => {
                 password: userPassword
             });
 
-        const {refresh_token: token} = tokenResponse.body;
+        const { token} = tokenResponse.body;
 
         await request(app)
             .post('/categories')

@@ -46,7 +46,7 @@ describe("List Category Controller", () => {
                 password: userPassword
             });
 
-        const {refresh_token: token} = tokenResponse.body;
+        const {token} = tokenResponse.body;
         const category = `${token}-category`;
         categoriesNames.push(category);
 

@@ -5,11 +5,18 @@ import {sign, verify} from "jsonwebtoken";
 import Auth from "@config/auth";
 import {AppError} from "@shared/errors/AppError";
 import {IDateProvider} from "@shared/container/providers/date/IDateProvider";
+import tokenConfig from "@config/auth";
 
 interface IPayload {
     sub: string,
     email: string
 }
+
+interface ITokenResponse {
+    token: string,
+    refresh_token: string
+}
+
 
 @injectable()
 export class RefreshTokenUseCase {
@@ -21,7 +28,7 @@ export class RefreshTokenUseCase {
     ) {
     }
 
-    async execute(token: string): Promise<string> {
+    async execute(token: string): Promise<ITokenResponse> {
         const decode = verify(token, Auth.refresh_token_secret) as IPayload;
         const userId = decode.sub;
         const refreshToken = await this.usersTokenRepository.findByUserIdAndRefreshToken(userId, token);
@@ -43,6 +50,19 @@ export class RefreshTokenUseCase {
             expires_date: this.dateProvider.addDays(Auth.refresh_token_expires_days)
         });
 
-        return newRefreshToken;
+        const payload = {
+            email: decode.email,
+            name: decode.email
+        };
+
+        const newToken = sign(payload, Auth.token_secret, {
+            subject: userId,
+            expiresIn: Auth.token_expires,
+        });
+
+        return {
+            refresh_token: newRefreshToken,
+            token: newToken
+        };
     }
 }

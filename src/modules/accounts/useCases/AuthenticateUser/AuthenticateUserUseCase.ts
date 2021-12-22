@@ -53,7 +53,7 @@ export class AuthenticateUserUseCase {
 
         const payload = {
             email: user.email,
-            name: user.email,
+            name: user.name,
         };
 
         const token = sign(payload, tokenConfig.token_secret, config);

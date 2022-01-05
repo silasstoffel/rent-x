@@ -14,6 +14,7 @@
     "@types/supertest": "^2.0.11",
     "aws-sdk": "^2.1049.0",
     "bcrypt": "^5.0.1",
+    "class-transformer": "^0.5.1",
     "csv-parse": "^4.15.4",
     "dayjs": "^1.10.7",
     "express": "^4.17.1",

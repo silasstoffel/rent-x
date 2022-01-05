@@ -13,5 +13,4 @@ container.registerInstance<IMailProvider>("EtherealMailProvider", new EtherealMa
 
 const storageDriver = process.env.STORAGE_DRIVER || 'local';
 const storage = storageDriver === 's3' ? new S3StorageProvider() : new LocalStorageProvider();
-console.log(storage.constructor.name);
 container.registerInstance<IStorageProvider>("StorageProvider", storage);

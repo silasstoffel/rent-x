@@ -34,7 +34,7 @@ export class SESMailProvider implements IMailProvider {
 
         await this.client.sendMail({
             to,
-            from: "Rentx <oi@silas-on.space>",
+            from: `${process.env.MAIL_NAME} <${process.env.MAIL_FROM}>`,
             subject,
             html,
         });

@@ -1,12 +1,14 @@
+!.gitkeep
+!/tmp/.gitkeep
+!/storage/.gitkeep
+
 node_modules
 yarn-error.log
 .vscode
-!.gitkeep
 .idea
 /dist
-!tmp/.gitkeep
-/tmp
-/storage
+/tmp/*
+/storage/*
 /docker/postgres
 coverage
 

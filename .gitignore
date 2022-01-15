@@ -4,6 +4,7 @@ yarn-error.log
 !.gitkeep
 .idea
 /dist
+!tmp/.gitkeep
 /tmp
 /storage
 /docker/postgres
@@ -11,5 +12,4 @@ coverage
 
 .env
 
-!./tmp/.gitkeep
 ormconfig.json

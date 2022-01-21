@@ -11,6 +11,8 @@
         "seed:create-admin": "ts-node-dev ./src/shared/infra/typeorm/seed/user-admin.ts"
     },
     "dependencies": {
+        "@sentry/node": "^6.16.1",
+        "@sentry/tracing": "^6.16.1",
         "@types/csv-parse": "^1.2.2",
         "@types/redis": "^4.0.11",
         "@types/supertest": "^2.0.11",

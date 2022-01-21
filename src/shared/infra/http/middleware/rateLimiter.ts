@@ -15,8 +15,6 @@ export default async function (
             host: process.env.REDIS_HOST,
             port: Number(process.env.REDIS_PORT),
         });
-
-        await redisClient.connect();
     } catch (err) {
         throw new Error(`Redis error connection. ${err.message}`);
     }
@@ -33,6 +31,6 @@ export default async function (
 
         return next();
     } catch (err) {
-        throw new AppError("Too many request", 429);
+        throw new AppError("Too many requests", 429);
     }
 }

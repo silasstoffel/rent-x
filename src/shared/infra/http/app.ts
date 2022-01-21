@@ -19,7 +19,7 @@ import rateLimiter from "@shared/infra/http/middleware/rateLimiter";
 const app = express();
 
 app.use(rateLimiter);
-
+/*
 Sentry.init({
     dsn: process.env.SENTRY_DSN,
     integrations: [
@@ -34,12 +34,13 @@ Sentry.init({
     // We recommend adjusting this value in production
     tracesSampleRate: 1.0,
 });
+*/
 
 // RequestHandler creates a separate execution context using domains, so that every
 // transaction/span/breadcrumb is attached to its own Hub instance
-app.use(Sentry.Handlers.requestHandler());
+//app.use(Sentry.Handlers.requestHandler());
 // TracingHandler creates a trace for every incoming request
-app.use(Sentry.Handlers.tracingHandler());
+//app.use(Sentry.Handlers.tracingHandler());
 
 app.use(express.json());
 app.use(cors());
@@ -50,7 +51,7 @@ app.use("/avatar", express.static(`${upload.tmpFolder}/cars`));
 
 app.use(router);
 
-app.use(Sentry.Handlers.errorHandler());
+//app.use(Sentry.Handlers.errorHandler());
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 

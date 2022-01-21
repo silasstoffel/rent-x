@@ -18,6 +18,8 @@ import rateLimiter from "@shared/infra/http/middleware/rateLimiter";
 
 const app = express();
 
+console.log(process.env);
+
 //app.use(rateLimiter);
 /*
 Sentry.init({

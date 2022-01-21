@@ -31,6 +31,6 @@ export default async function (
     } catch (err) {
         throw new AppError("Too many request", 429);
     } finally {
-        await redisClient.disconnect();
+        //await redisClient.disconnect();
     }
 }

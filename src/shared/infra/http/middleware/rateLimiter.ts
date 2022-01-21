@@ -25,7 +25,7 @@ export default async function (
     next: NextFunction
 ): Promise<void> {
     try {
-        redisClient.connect();
+        await redisClient.connect();
         await limiter.consume(request.ip);
         return next();
     } catch (err) {

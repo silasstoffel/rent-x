@@ -3,9 +3,6 @@ import { RateLimiterRedis } from "rate-limiter-flexible";
 import { NextFunction, Request, Response } from "express";
 import { AppError } from "@shared/errors/AppError";
 
-const redisHost = process.env.REDIS_HOST;
-const redisPort = Number(process.env.REDIS_PORT);
-
 const redisClient = redis.createClient({
     legacyMode: true,
     socket: {

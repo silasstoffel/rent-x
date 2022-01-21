@@ -20,7 +20,7 @@ const app = express();
 
 console.log(process.env);
 
-//app.use(rateLimiter);
+app.use(rateLimiter);
 /*
 Sentry.init({
     dsn: process.env.SENTRY_DSN,
